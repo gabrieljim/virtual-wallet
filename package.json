@@ -1,0 +1,15 @@
+{
+	"name": "wallet",
+	"version": "1.0.0",
+	"description": "virtual wallet, soap and rest services",
+	"main": "server.js",
+	"scripts": {
+		"start": "node server.js",
+		"dev": "concurrently \"nodemon server.js\" \"cd client && npm start\""
+	},
+	"author": "",
+	"license": "ISC",
+	"dependencies": {
+		"express": "^4.17.1"
+	}
+}
