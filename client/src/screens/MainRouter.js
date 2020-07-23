@@ -6,6 +6,7 @@ import Dashboard from "./Dashboard";
 import Pay from "./Pay";
 import AddFunds from "./AddFunds";
 import Status from "./Status";
+import MailSent from "./MailSent";
 
 const Content = styled.div`
 	width: 100%;
@@ -17,6 +18,12 @@ const MainRouter = () => {
 	return (
 		<Content>
 			<Switch>
+				<Route exact path="/register">
+					<Register />
+				</Route>
+				<Route exact path="/login">
+					<Login />
+				</Route>
 				<Route exact path="/">
 					<Dashboard />
 				</Route>
@@ -28,6 +35,9 @@ const MainRouter = () => {
 				</Route>
 				<Route path="/status">
 					<Status />
+				</Route>
+				<Route path="/mail-sent">
+					<MailSent />
 				</Route>
 			</Switch>
 		</Content>
