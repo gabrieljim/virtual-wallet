@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { TextInput, Submit } from "shared/inputs";
+import Title from "components/Title";
 import { Content } from "shared/containers";
 import * as SC from "./styles";
 
@@ -14,7 +15,7 @@ const AddFunds = () => {
 
 	return (
 		<Content>
-			<h1>¿Cuánto va a recargar?</h1>
+			<Title>¿Cuánto va a recargar?</Title>
 			<SC.FundsContainer>
 				<TextInput
 					value={"$ " + funds}

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Title from "components/Title";
 import { TextInput, Submit } from "shared/inputs";
 import { Content } from "shared/containers";
 import * as SC from "./styles";
@@ -14,7 +15,7 @@ const Pay = () => {
 
 	return (
 		<Content>
-			<h1>¿Cuánto pagará?</h1>
+			<Title>¿Cuánto pagará?</Title>
 			<SC.PaymentContainer>
 				<TextInput
 					value={"$ " + payment}

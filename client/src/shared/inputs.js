@@ -21,12 +21,14 @@ export const Submit = styled.input.attrs(props => ({
 	type: "submit",
 	value: props.value
 }))`
+	display: block;
 	padding: 1rem;
 	font-size: 1.5rem;
-	border: 2px solid ${props => props.theme.text};
+	border: 2px solid lightgray;
 	border-radius: 20px;
 	background-color: ${props => props.theme.background};
 	transition: 0.2s;
+	margin: ${props => props.center ? "auto" : "0"};
 
 	&:hover {
 		cursor: pointer;

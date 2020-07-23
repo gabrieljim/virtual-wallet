@@ -1,15 +1,16 @@
 import React from "react";
-import * as SC from "./styles";
+import Title from "components/Title";
+import { Content } from "shared/containers";
 
 import Options from "./components/Options";
 
 const Dashboard = () => {
 	return (
-		<SC.Content>
-			<h1>¿Qué necesitas?</h1>	
+		<Content>
+			<Title>¿Qué necesitas?</Title>
 			<Options />
-		</SC.Content>
-	)		
-}
+		</Content>
+	);
+};
 
 export default Dashboard;
