@@ -26,7 +26,7 @@ const Register = () => {
 	const isLogged = useSelector(state => state.auth.isLogged);
 
 	const submitHandler = async values => {
-		const response = await fetch("/register", {
+		const response = await fetch("/api/register", {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json",

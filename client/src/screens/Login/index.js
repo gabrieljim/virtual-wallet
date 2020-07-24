@@ -22,7 +22,7 @@ const Login = () => {
 	const isLogged = useSelector(state => state.auth.isLogged);
 
 	const submitHandler = async (values, dispatch) => {
-		const response = await fetch("/login", {
+		const response = await fetch("/api/login", {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json",

@@ -19,28 +19,28 @@ export const protectedFetch = async (url, options = {}) => {
 };
 
 export const getStatus = async user => {
-	const data = await protectedFetch("/get-status", {
+	const data = await protectedFetch("/api/get-status", {
 		body: JSON.stringify(user)
 	});
 	return data;
 };
 
 export const addFunds = async user => {
-	const data = await protectedFetch("/add-funds", {
+	const data = await protectedFetch("/api/add-funds", {
 		body: JSON.stringify(user)
 	});
 	return data;
 };
 
 export const pay = async user => {
-	const data = await protectedFetch("/pay", {
+	const data = await protectedFetch("/api/pay", {
 		body: JSON.stringify(user)
 	});
 	return data;
 };
 
 export const confirmPay = async user => {
-	const data = await protectedFetch("/confirm-pay", {
+	const data = await protectedFetch("/api/confirm-pay", {
 		body: JSON.stringify(user)
 	});
 	return data;
