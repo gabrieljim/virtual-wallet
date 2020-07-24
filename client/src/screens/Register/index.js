@@ -15,12 +15,28 @@ const initialValues = {
 	phone: ""
 };
 
+const submitHandler = async values => {
+	const response = await fetch("/register", {
+		method: "POST",
+		headers: {
+			"Content-Type": "application/json",
+			Accepts: "application/json"
+		},
+		body: JSON.stringify(values)
+	});
+	const data = await response.json();
+};
+
 const Register = () => {
 	return (
 		<Content>
 			<Title>Regístrate</Title>
 			<SC.FormContainer>
-				<Formik initialValues={initialValues} validationSchema={validation}>
+				<Formik
+					initialValues={initialValues}
+					validationSchema={validation}
+					onSubmit={submitHandler}
+				>
 					<Form>
 						<FormikInput name="firstName" placeholder="Nombre" />
 						<FormikInput name="lastName" placeholder="Apellido" />

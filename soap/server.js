@@ -1,50 +1,53 @@
-var soap = require("soap");
-var express = require("express");
-var fs = require("fs");
+const soap = require("soap");
+const http = require("http");
+const mongoose = require("mongoose");
+const fs = require("fs");
 
-function sayHello(args) {
-	console.log(args);
-	const name = args.name;
+const UserController = require("./controllers/UserController");
 
-	return { greeting: `hello ${name}` };
-}
+/*
+  Normalmente, usaría un .env con la librería dotenv para este tipo de información, sin embargo, para mantenerlo
+  fácil de testear por los que lo van a usar dejé las strings planas, de este modo no hará falta enviarles
+  información extra para que corran el proyecto
+*/
+
+mongoose
+	.connect(
+		"mongodb://localhost:27017/gabrielvirtualwallet",
+		{
+			useNewUrlParser: true,
+			useUnifiedTopology: true,
+			useCreateIndex: true
+		},
+		err => {
+			if (err) {
+				throw new Error(
+					"Error conectando a la base de datos, MongoDB está corriendo?"
+				);
+			}
+			console.log("Conexión a Mongo exitosa");
+		}
+	)
+	.catch(e => console.error(e));
 
 // the service
 var serviceObject = {
-	HelloService: {
-		HelloServiceSoapPort: {
-			SayHello: sayHello
+	WalletService: {
+		WalletServicePort: {
+			RegisterUser: UserController.registerUser,
+			Login: UserController.login
 		}
 	}
 };
 
 // load the WSDL file
-var xml = fs.readFileSync("service.wsdl", "utf8");
-// create express app
-var app = express();
+var wdsl = fs.readFileSync("service.wsdl", "utf8");
 
-// root handler
-app.get("/", function(req, res) {
-	res.send(
-		'Node Soap Example!<br /><a href="https://github.com/macogala/node-soap-example#readme">Git README</a>'
-	);
-});
-
-// Launch the server and listen
-var port = 8000;
-app.listen(port, function() {
-	console.log("Listening on port " + port);
-	var wsdl_path = "/wsdl";
-	const server = soap.listen(app, wsdl_path, serviceObject, xml);
-
-	server.log = function(type, data) {
-		console.log(type, data);
-	};
-
+const port = 8001;
+const server = http.createServer();
+server.listen(port, () =>
 	console.log(
-		"Check http://localhost:" +
-			port +
-			wsdl_path +
-			"?wsdl to see if the service is working"
-	);
-});
+		`Servicio SOAP corriendo en el puerto ${port}, asegúrese de iniciar el servicio de MongoDB`
+	)
+);
+soap.listen(server, "/service", serviceObject, wdsl);

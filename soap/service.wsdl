@@ -1,48 +1,70 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <definitions name = "Wallet"
-	 targetNamespace = "http://localhost:8000/wsdl"
-   xmlns = "http://schemas.xmlsoap.org/wsdl/"
-   xmlns:soap = "http://schemas.xmlsoap.org/wsdl/soap/"
-	 xmlns:tns = "http://localhost:8000/wsdl"
-   xmlns:xsd = "http://www.w3.org/2001/XMLSchema">
- 
-   <message name = "SayHelloRequest">
-      <part name = "name" type = "xsd:string"/>
-   </message>
-	
-   <message name = "SayHelloResponse">
-      <part name = "greeting" type = "xsd:string"/>
-   </message>
+	targetNamespace = "http://localhost:8000/service"
+	xmlns = "http://schemas.xmlsoap.org/wsdl/"
+	xmlns:soap = "http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:tns = "http://localhost:8000/service"
+	xmlns:xsd = "http://www.w3.org/2001/XMLSchema"
+>
 
-   <portType name = "HelloServiceSoapPort">
-      <operation name = "SayHello">
-         <input message = "tns:SayHelloRequest"/>
-         <output message = "tns:SayHelloResponse"/>
-      </operation>
-   </portType>
+	<message name = "RegisterUser">
+		<part name = "data" type = "xsd:string"/>
+	</message>
+	<message name = "RegisterUserResponse">
+		<part name = "data" type = "xsd:string"/>
+	</message>
+	<message name = "Login">
+		<part name = "data" type = "xsd:string"/>
+	</message>
+	<message name = "LoginResponse">
+		<part name = "data" type = "xsd:string"/>
+	</message>
 
-   <binding name = "HelloServiceSoapBinding" type = "tns:HelloServiceSoapPort">
-      <soap:binding style = "rpc"
-         transport = "http://schemas.xmlsoap.org/soap/http"/>
-      <operation name = "SayHello">
-         <soap:operation soapAction = "SayHello"/>
-         <input>
-            <soap:body
-               use = "literal"/>
-         </input>
-		
-         <output>
-            <soap:body
-               use = "literal"/>
-         </output>
-      </operation>
-   </binding>
+	<portType name = "WalletServicePort">
+		<operation name = "RegisterUser">
+			<input message = "tns:RegisterUser"/>
+			<output message = "tns:RegisterUserResponse"/>
+		</operation>
+		<operation name = "Login">
+			<input message = "tns:Login"/>
+			<output message = "tns:LoginResponse"/>
+		</operation>
+	</portType>
 
-   <service name = "HelloService">
-      <documentation>WSDL File for HelloService</documentation>
-      <port binding = "tns:HelloServiceSoapBinding" name = "HelloServiceSoapPort">
-         <soap:address
-					 location = "http://localhost:8000/wsdl" />
-      </port>
-   </service>
+	<binding name = "WalletServiceSOAP" type = "tns:WalletServicePort">
+		<soap:binding 
+			style = "rpc"
+			transport = "http://schemas.xmlsoap.org/soap/http"
+			/>
+		<operation name = "RegisterUser">
+			<soap:operation soapAction = "RegisterUser"/>
+			<input>
+				<soap:body
+					use = "literal"/>
+			</input>
+			<output>
+				<soap:body
+					use = "literal"/>
+			</output>
+		</operation>
+		<operation name = "Login">
+			<soap:operation soapAction = "Login"/>
+			<input>
+				<soap:body
+					use = "literal"/>
+			</input>
+			<output>
+				<soap:body
+					use = "literal"/>
+			</output>
+		</operation>
+	</binding>
+
+	<service name = "WalletService">
+		<documentation>Archivo WSDL para el servicio SOAP de la Virtual Wallet</documentation>
+		<port binding = "tns:WalletServiceSOAP" name = "WalletServicePort">
+			<soap:address
+				location = "http://localhost:8000/service" />
+		</port>
+	</service>
 </definitions>

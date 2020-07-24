@@ -4,12 +4,16 @@
 	"description": "virtual wallet, soap and rest services",
 	"main": "server.js",
 	"scripts": {
-		"start": "node server.js",
-		"dev": "concurrently \"nodemon server.js\" \"cd client && npm start\""
+		"start": "concurrently \"cd client && (npm run build && node ../server.js)\" \"cd soap && node server.js\"",
+		"dev": "concurrently \"nodemon server.js\" \"cd soap && nodemon server.js\" \"cd client && npm start\"",
+		"servers-only": "concurrently \"nodemon server.js\" \"cd soap && nodemon server.js\""
 	},
 	"author": "",
 	"license": "ISC",
 	"dependencies": {
-		"express": "^4.17.1"
+		"concurrently": "^5.2.0",
+		"easy-soap-request": "^3.3.2",
+		"express": "^4.17.1",
+		"xml2js": "^0.4.23"
 	}
 }

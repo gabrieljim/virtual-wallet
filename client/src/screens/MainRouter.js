@@ -15,6 +15,10 @@ const Content = styled.div`
 	width: 100%;
 	height: 100vh;
 	padding: 4rem;
+
+	@media screen and (max-width: 800px) {
+		height: auto;	
+	}
 `;
 
 const MainRouter = () => {
