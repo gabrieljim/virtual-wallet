@@ -11,3 +11,5 @@ El `package.json` del proyecto cuenta con 3 comandos para iniciarlo:
 * `npm run servers-only` Inicia solo los servidores con nodemon
 
 En cualquier caso, **el servidor REST estará en el puerto 8000 mientras que el SOAP estará en el 8001**
+
+Se incluye la colección documentada de POSTMAN en la carpeta `docs/`
