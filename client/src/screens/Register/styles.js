@@ -4,17 +4,13 @@ import { Submit } from "shared/inputs";
 
 export const FormContainer = styled.div`
 	width: 60%;
-	height: 100%;
+	height: auto;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 
 	@media screen and (max-width: 800px) {
 		width: 100%;	
-	}
-
-	@media screen and (max-height: 700px) {
-		height: auto;	
 	}
 `
 
