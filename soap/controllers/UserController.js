@@ -168,7 +168,7 @@ const pay = async args => {
 	user.tempToken = randomToken;
 	await user.save();
 	try {
-		await utils.mail(data.email, randomToken);
+		console.log(await utils.mail(data.email, randomToken));
 
 		return {
 			data: JSON.stringify({ code: 1 })

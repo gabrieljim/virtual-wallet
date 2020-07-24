@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Loading from "shared/loading";
+import { GoBack } from "shared/inputs";
 import { getStatus } from "services";
 import { useSelector } from "react-redux";
 import Title from "components/Title";
@@ -33,6 +34,7 @@ const Status = () => {
 			) : (
 				<Loading />
 			)}
+			<GoBack to="/">Volver</GoBack>
 		</Content>
 	);
 };

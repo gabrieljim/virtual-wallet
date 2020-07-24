@@ -3,7 +3,7 @@ import { Notice } from "shared/messages";
 import Loading from "shared/loading";
 import Title from "components/Title";
 import { useSelector } from "react-redux";
-import { TextInput, Submit } from "shared/inputs";
+import { TextInput, Submit, GoBack } from "shared/inputs";
 import { Content } from "shared/containers";
 import * as SC from "./styles";
 import { pay } from "services";
@@ -56,6 +56,7 @@ const Pay = () => {
 					<Submit onClick={submitForm} value="Pagar" />
 				)}
 			</SC.PaymentContainer>
+			<GoBack to="/">Volver</GoBack>
 		</Content>
 	);
 };

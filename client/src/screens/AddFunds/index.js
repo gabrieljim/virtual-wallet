@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import Loading from "shared/loading";
-import { Notice } from "shared/messages";
 import { addFunds } from "services";
-import { TextInput, Submit } from "shared/inputs";
+import { Notice } from "shared/messages";
+import { TextInput, Submit, GoBack } from "shared/inputs";
 import { useSelector } from "react-redux";
 import Title from "components/Title";
 import { Content } from "shared/containers";
@@ -47,6 +47,7 @@ const AddFunds = () => {
 					<Submit onClick={submitForm} value="Recargar" />
 				)}
 			</SC.FundsContainer>
+			<GoBack to="/">Volver</GoBack>
 		</Content>
 	);
 };
