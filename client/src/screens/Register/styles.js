@@ -18,6 +18,11 @@ export const FormContainer = styled.div`
 	}
 `
 
+export const LinkContainer = styled.div`
+	margin: 2rem auto 4rem auto;
+	text-align: center;
+`
+
 export const ToLogin = styled(Link)`
 	color: ${props => props.theme.text};
 

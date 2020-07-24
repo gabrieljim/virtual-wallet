@@ -26,11 +26,22 @@ const registerUser = async args => {
 			};
 		}
 
-		await User.create(data);
+		const newUser = await User.create(data);
+
+		const payload = {
+			id: newUser._id,
+			document: newUser.document,
+			email: newUser.email,
+			phone: newUser.phone
+		};
+
+		const token = await utils.generateJWTToken(payload, { expiresIn: "1h" });
 
 		return {
 			data: JSON.stringify({
-				code: 1
+				code: 1,
+				user: payload,
+				token
 			})
 		};
 	} catch {
@@ -84,7 +95,7 @@ const getStatus = async args => {
 
 	//Comparamos el documento y el telefono con los de la base de datos
 	const user = await User.findOne({
-		$or: [{ document: data.document }, { phone: data.phone }]
+		$and: [{ document: data.document }, { phone: data.phone }]
 	});
 
 	if (!user) {
@@ -107,7 +118,7 @@ const addFunds = async args => {
 
 	//Comparamos el documento y el telefono con los de la base de datos
 	const user = await User.findOne({
-		$or: [{ document: data.document }, { phone: data.phone }]
+		$and: [{ document: data.document }, { phone: data.phone }]
 	});
 
 	if (!user) {

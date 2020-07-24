@@ -17,7 +17,7 @@ export const TextInput = styled.input.attrs(() => ({
 	}
 
 	@media screen and (max-width: 800px) {
-		margin: 40px 0;	
+		margin: 20px 0;	
 	}
 `;
 

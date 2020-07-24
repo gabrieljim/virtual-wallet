@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import Loading from "shared/loading";
+import { Notice } from "shared/messages";
 import { Redirect } from "react-router-dom";
+import { authenticate } from "store/authSlice";
 import Title from "components/Title";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Formik, Form } from "formik";
 import { Content } from "shared/containers";
 import * as SC from "./styles";
@@ -18,20 +20,27 @@ const initialValues = {
 	phone: ""
 };
 
-const submitHandler = async values => {
-	const response = await fetch("/register", {
-		method: "POST",
-		headers: {
-			"Content-Type": "application/json",
-			Accepts: "application/json"
-		},
-		body: JSON.stringify(values)
-	});
-	const data = await response.json();
-};
-
 const Register = () => {
+	const [error, setError] = useState();
+	const dispatch = useDispatch();
 	const isLogged = useSelector(state => state.auth.isLogged);
+
+	const submitHandler = async values => {
+		const response = await fetch("/register", {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+				Accepts: "application/json"
+			},
+			body: JSON.stringify(values)
+		});
+		const data = await response.json();
+		if (data.error) {
+			setError(data.error);
+		} else {
+			dispatch(authenticate({ token: data.token, user: data.user }));
+		}
+	};
 
 	if (isLogged) {
 		return <Redirect to="/" />;
@@ -40,6 +49,7 @@ const Register = () => {
 	return (
 		<Content>
 			<Title>Regístrate</Title>
+			<Notice condition={error}>{error}</Notice>
 			<SC.FormContainer>
 				<Formik
 					initialValues={initialValues}
@@ -61,7 +71,9 @@ const Register = () => {
 						</Form>
 					)}
 				</Formik>
-				<SC.ToLogin to="/login">Ya tienes cuenta?</SC.ToLogin>
+				<SC.LinkContainer>
+					<SC.ToLogin to="/login">Ya tienes cuenta?</SC.ToLogin>
+				</SC.LinkContainer>
 			</SC.FormContainer>
 		</Content>
 	);

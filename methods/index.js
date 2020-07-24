@@ -47,7 +47,7 @@ const registerUser = async (req, res) => {
 	if (response.error) {
 		res.json({ error: response.error });
 	} else {
-		res.json({ msg: "success" });
+		res.json({ user: response.user, token: response.token });
 	}
 };
 
