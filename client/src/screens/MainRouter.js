@@ -1,6 +1,11 @@
 import React from "react";
-import { Route, Switch, useLocation } from "react-router-dom";
-import { AnimatePresence } from "framer-motion";
+import { useSelector } from "react-redux";
+import {
+	Route,
+	Redirect,
+	Switch,
+	useLocation
+} from "react-router-dom";
 import styled from "styled-components/macro";
 
 import Register from "./Register";
@@ -17,40 +22,39 @@ const Content = styled.div`
 	padding: 4rem;
 
 	@media screen and (max-width: 800px) {
-		height: auto;	
+		height: auto;
 	}
 `;
+
+const ProtectedRoute = ({ component: Component, ...rest }) => {
+	const isLogged = useSelector(state => state.auth.isLogged);
+	return isLogged ? (
+		<Route {...rest}>
+			<Component />
+		</Route>
+	) : (
+		<Redirect to="/login" />
+	);
+};
 
 const MainRouter = () => {
 	const location = useLocation();
 
 	return (
 		<Content>
-			<AnimatePresence exitBeforeEnter>
-				<Switch location={location} key={location.pathname}>
-					<Route exact path="/register">
-						<Register />
-					</Route>
-					<Route exact path="/login">
-						<Login />
-					</Route>
-					<Route exact path="/">
-						<Dashboard />
-					</Route>
-					<Route path="/add-funds">
-						<AddFunds />
-					</Route>
-					<Route path="/pay">
-						<Pay />
-					</Route>
-					<Route path="/status">
-						<Status />
-					</Route>
-					<Route path="/mail-sent">
-						<MailSent />
-					</Route>
-				</Switch>
-			</AnimatePresence>
+			<Switch location={location} key={location.pathname}>
+				<Route path="/register">
+					<Register />
+				</Route>
+				<Route path="/login">
+					<Login />
+				</Route>
+				<ProtectedRoute exact path="/" component={Dashboard} />
+				<ProtectedRoute path="/add-funds" component={AddFunds} />
+				<ProtectedRoute path="/pay" component={Pay} />
+				<ProtectedRoute path="/status" component={Status} />
+				<ProtectedRoute path="/mail-sent" component={MailSent} />
+			</Switch>
 		</Content>
 	);
 };

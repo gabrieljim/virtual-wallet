@@ -35,7 +35,11 @@ var serviceObject = {
 	WalletService: {
 		WalletServicePort: {
 			RegisterUser: UserController.registerUser,
-			Login: UserController.login
+			Login: UserController.login,
+			GetStatus: UserController.getStatus,
+			AddFunds: UserController.addFunds,
+			Pay: UserController.pay,
+			ConfirmPay: UserController.confirmPay
 		}
 	}
 };

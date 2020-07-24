@@ -18,7 +18,6 @@ const callMethod = async (method, params) => {
 		const xmljson = await xml2js.parseStringPromise(response.body);
 		const responseXML = xmljson["soap:Envelope"]["soap:Body"][0];
 		const data = responseXML[Object.keys(responseXML)][0]["tns:data"][0];
-		console.log(data)
 		return JSON.parse(data);
 	} catch (e) {
 		console.log(e);

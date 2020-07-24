@@ -1,5 +1,8 @@
 import React from "react";
+import Loading from "shared/loading";
+import { Redirect } from "react-router-dom";
 import Title from "components/Title";
+import { useSelector } from "react-redux";
 import { Formik, Form } from "formik";
 import { Content } from "shared/containers";
 import * as SC from "./styles";
@@ -28,6 +31,12 @@ const submitHandler = async values => {
 };
 
 const Register = () => {
+	const isLogged = useSelector(state => state.auth.isLogged);
+
+	if (isLogged) {
+		return <Redirect to="/" />;
+	}
+
 	return (
 		<Content>
 			<Title>Regístrate</Title>
@@ -37,15 +46,22 @@ const Register = () => {
 					validationSchema={validation}
 					onSubmit={submitHandler}
 				>
-					<Form>
-						<FormikInput name="firstName" placeholder="Nombre" />
-						<FormikInput name="lastName" placeholder="Apellido" />
-						<FormikInput name="email" placeholder="Email" />
-						<FormikInput name="document" placeholder="Documento" />
-						<FormikInput name="phone" placeholder="Teléfono" />
-						<SC.FormSubmit value="Registrarme" />
-					</Form>
+					{({ isSubmitting }) => (
+						<Form>
+							<FormikInput name="firstName" placeholder="Nombre" />
+							<FormikInput name="lastName" placeholder="Apellido" />
+							<FormikInput name="email" placeholder="Email" />
+							<FormikInput name="document" placeholder="Documento" />
+							<FormikInput name="phone" placeholder="Teléfono" />
+							{isSubmitting ? (
+								<Loading />
+							) : (
+								<SC.FormSubmit value="Registrarme" />
+							)}
+						</Form>
+					)}
 				</Formik>
+				<SC.ToLogin to="/login">Ya tienes cuenta?</SC.ToLogin>
 			</SC.FormContainer>
 		</Content>
 	);

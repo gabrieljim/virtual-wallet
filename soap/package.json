@@ -13,6 +13,7 @@
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.9.25",
     "nodemailer": "^6.4.10",
+    "rand-token": "^1.0.1",
     "soap": "^0.32.0"
   }
 }

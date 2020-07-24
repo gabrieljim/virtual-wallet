@@ -19,6 +19,30 @@
 	<message name = "LoginResponse">
 		<part name = "data" type = "xsd:string"/>
 	</message>
+	<message name = "GetStatus">
+		<part name = "data" type = "xsd:string"/>
+	</message>
+	<message name = "GetStatusResponse">
+		<part name = "data" type = "xsd:string"/>
+	</message>
+	<message name = "AddFunds">
+		<part name = "data" type = "xsd:string"/>
+	</message>
+	<message name = "AddFundsResponse">
+		<part name = "data" type = "xsd:string"/>
+	</message>
+	<message name = "Pay">
+		<part name = "data" type = "xsd:string"/>
+	</message>
+	<message name = "PayResponse">
+		<part name = "data" type = "xsd:string"/>
+	</message>
+	<message name = "ConfirmPay">
+		<part name = "data" type = "xsd:string"/>
+	</message>
+	<message name = "ConfirmPayResponse">
+		<part name = "data" type = "xsd:string"/>
+	</message>
 
 	<portType name = "WalletServicePort">
 		<operation name = "RegisterUser">
@@ -28,6 +52,22 @@
 		<operation name = "Login">
 			<input message = "tns:Login"/>
 			<output message = "tns:LoginResponse"/>
+		</operation>
+		<operation name = "GetStatus">
+			<input message = "tns:GetStatus"/>
+			<output message = "tns:GetStatusResponse"/>
+		</operation>
+		<operation name = "AddFunds">
+			<input message = "tns:AddFunds"/>
+			<output message = "tns:AddFundsResponse"/>
+		</operation>
+		<operation name = "Pay">
+			<input message = "tns:Pay"/>
+			<output message = "tns:PayResponse"/>
+		</operation>
+		<operation name = "ConfirmPay">
+			<input message = "tns:ConfirmPay"/>
+			<output message = "tns:ConfirmPayResponse"/>
 		</operation>
 	</portType>
 
@@ -49,6 +89,50 @@
 		</operation>
 		<operation name = "Login">
 			<soap:operation soapAction = "Login"/>
+			<input>
+				<soap:body
+					use = "literal"/>
+			</input>
+			<output>
+				<soap:body
+					use = "literal"/>
+			</output>
+		</operation>
+		<operation name = "GetStatus">
+			<soap:operation soapAction = "GetStatus"/>
+			<input>
+				<soap:body
+					use = "literal"/>
+			</input>
+			<output>
+				<soap:body
+					use = "literal"/>
+			</output>
+		</operation>
+		<operation name = "AddFunds">
+			<soap:operation soapAction = "AddFunds"/>
+			<input>
+				<soap:body
+					use = "literal"/>
+			</input>
+			<output>
+				<soap:body
+					use = "literal"/>
+			</output>
+		</operation>
+		<operation name = "Pay">
+			<soap:operation soapAction = "Pay"/>
+			<input>
+				<soap:body
+					use = "literal"/>
+			</input>
+			<output>
+				<soap:body
+					use = "literal"/>
+			</output>
+		</operation>
+		<operation name = "ConfirmPay">
+			<soap:operation soapAction = "ConfirmPay"/>
 			<input>
 				<soap:body
 					use = "literal"/>

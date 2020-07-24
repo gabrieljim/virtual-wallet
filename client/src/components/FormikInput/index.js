@@ -1,15 +1,17 @@
 import React from "react";
 import { TextInput } from "shared/inputs";
 import { useField } from "formik";
-import { FormError } from "shared/messages";
+import { Notice } from "shared/messages";
 import * as SC from "./styles";
 
 const FormikInput = props => {
 	const [field, meta] = useField(props);
+
+	const shouldShow = meta.touched && meta.error;
 	return (
 		<SC.Container>
 			<TextInput {...field} {...props} />
-			{meta.touched && meta.error ? <FormError>{meta.error}</FormError> : null}
+			<Notice condition={shouldShow}>{meta.error}</Notice>
 		</SC.Container>
 	);
 };

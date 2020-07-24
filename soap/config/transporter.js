@@ -7,8 +7,8 @@ const transporter = nodemailer.createTransport({
 	host: "mail.cock.li",
 	port: 587,
 	auth: {
-		user: process.env.EMAIL,
-		pass: process.env.PASSWORD
+		user: "gabrieljim@firemail.cc",
+		pass: "123123123"
 	}
 })
 

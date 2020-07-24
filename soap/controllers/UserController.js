@@ -3,7 +3,7 @@ const utils = require("../utils");
 
 const serverError = {
 	data: JSON.stringify({
-		flag: 0,
+		code: 0,
 		error: "Error del servidor"
 	})
 };
@@ -20,7 +20,7 @@ const registerUser = async args => {
 		if (user) {
 			return {
 				data: JSON.stringify({
-					flag: 0,
+					code: 2,
 					error: "Usuario existente"
 				})
 			};
@@ -30,7 +30,7 @@ const registerUser = async args => {
 
 		return {
 			data: JSON.stringify({
-				flag: 1
+				code: 1
 			})
 		};
 	} catch {
@@ -50,7 +50,7 @@ const login = async args => {
 		if (!user) {
 			return {
 				data: JSON.stringify({
-					flag: 0,
+					code: 0,
 					error: "Correo no existente"
 				})
 			};
@@ -59,14 +59,15 @@ const login = async args => {
 		const payload = {
 			id: user._id,
 			document: user.document,
-			email: user.email
+			email: user.email,
+			phone: user.phone
 		};
 
 		const token = await utils.generateJWTToken(payload, { expiresIn: "1h" });
 
 		return {
 			data: JSON.stringify({
-				flag: 1,
+				code: 1,
 				user: payload,
 				token
 			})
@@ -77,7 +78,120 @@ const login = async args => {
 	}
 };
 
+const getStatus = async args => {
+	const { data: stringData } = args;
+	const data = JSON.parse(stringData);
+
+	//Comparamos el documento y el telefono con los de la base de datos
+	const user = await User.findOne({
+		$or: [{ document: data.document }, { phone: data.phone }]
+	});
+
+	if (!user) {
+		return {
+			data: JSON.stringify({
+				code: 0,
+				error: "Usuario no existente"
+			})
+		};
+	}
+
+	return {
+		data: JSON.stringify({ status: user.wallet })
+	};
+};
+
+const addFunds = async args => {
+	const { data: stringData } = args;
+	const data = JSON.parse(stringData);
+
+	//Comparamos el documento y el telefono con los de la base de datos
+	const user = await User.findOne({
+		$or: [{ document: data.document }, { phone: data.phone }]
+	});
+
+	if (!user) {
+		return {
+			data: JSON.stringify({
+				code: 0,
+				error: "Usuario no existente"
+			})
+		};
+	}
+
+	user.wallet = user.wallet + parseInt(data.value);
+	await user.save();
+
+	return {
+		data: JSON.stringify({ code: 1 })
+	};
+};
+
+const pay = async args => {
+	const randtoken = require("rand-token");
+	const { data: stringData } = args;
+	const data = JSON.parse(stringData);
+
+	const user = await User.findOne({ email: data.email });
+
+	if (!user) {
+		return {
+			data: JSON.stringify({
+				code: 0,
+				error: "Usuario no existente"
+			})
+		};
+	}
+
+	if (user.wallet < data.value) {
+		return {
+			data: JSON.stringify({
+				code: 5,
+				error: "Fondos insuficientes"
+			})
+		};
+	}
+
+	const randomToken = randtoken.generate(6);
+
+	user.tempToken = randomToken;
+	await user.save();
+	await utils.mail(data.email, randomToken);
+
+	return {
+		data: JSON.stringify({ code: 1 })
+	};
+};
+
+const confirmPay = async args => {
+	const { data: stringData } = args;
+	const data = JSON.parse(stringData);
+
+	const user = await User.findOne({ tempToken: data.token });
+
+	if (!user) {
+		return {
+			data: JSON.stringify({
+				code: 4,
+				error: "Token inválido o inexistente"
+			})
+		};
+	}
+
+	user.tempToken = undefined;
+	user.wallet = user.wallet - parseInt(data.value);
+	await user.save();
+
+	return {
+		data: JSON.stringify({ code: 1 })
+	};
+};
+
 module.exports = {
 	registerUser,
-	login
+	login,
+	getStatus,
+	addFunds,
+	pay,
+	confirmPay
 };

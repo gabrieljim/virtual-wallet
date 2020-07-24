@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 import { Submit } from "shared/inputs";
 
 export const FormContainer = styled.div`
@@ -11,8 +12,21 @@ export const FormContainer = styled.div`
 	@media screen and (max-width: 800px) {
 		width: 100%;	
 	}
+
+	@media screen and (max-height: 700px) {
+		height: auto;	
+	}
+`
+
+export const ToLogin = styled(Link)`
+	color: ${props => props.theme.text};
+
+	&:hover {
+		text-decoration: underline;
+		color: ${props => props.theme.contrast};
+	}
 `
 
 export const FormSubmit = styled(Submit)`
-	margin: 2rem auto 0 auto;
+	margin: 2rem auto;
 `

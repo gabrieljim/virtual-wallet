@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 import { Submit } from "shared/inputs";
 import { Content } from "shared/containers";
 
@@ -15,6 +16,15 @@ export const FormContainer = styled.div`
 	}
 `
 
+export const ToRegister = styled(Link)`
+	color: ${props => props.theme.text};
+
+	&:hover {
+		text-decoration: underline;
+		color: ${props => props.theme.contrast};
+	}
+`
+
 export const FormSubmit = styled(Submit)`
-	margin: 2rem auto 0 auto;
+	margin: 2rem auto;
 `

@@ -15,6 +15,10 @@ export const TextInput = styled.input.attrs(() => ({
 	&:focus {
 		border-bottom-color: ${props => props.theme.contrast};
 	}
+
+	@media screen and (max-width: 800px) {
+		margin: 40px 0;	
+	}
 `;
 
 export const Submit = styled.input.attrs(props => ({

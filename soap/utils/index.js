@@ -7,20 +7,17 @@ const generateJWTToken = async (data, options = {}) => {
 	return token;
 };
 
-const validateToken = token => {
-	const jwt = require("jsonwebtoken");
-	return jwt.verify(token, "secreto-jwt");
-};
-
-const mail = async (id, email, token) => {
-	const transporter = require("../../config/transporter");
+const mail = async (email, token) => {
+	const transporter = require("../config/transporter");
 	const mailOptions = {
-		from: "Gabriel <gabrieljim@airmail.cc>",
+		from: "Gabriel <gabrieljim@firemail.cc>",
 		to: email,
-		subject: "Reinicio de contraseña",
-		html: `<a href="${process.env.CLIENT_URL}${id}/${encodeURIComponent(
-			token
-		)}">Resetear contraseña</a>`
+		subject: "Confirme su compra",
+		html: `<p>Su token para comprar es: <b>${token}</b></p>
+			<br>
+			<br>
+			<br>
+			<p>NOTA: En cuanto a esta parte no estaba por completo seguro de qué hacía falta, se pedía generar un token y un ID de sesión, pero no entendí muy bien qué debía ser cada cosa, sin embargo, la sesión se confirma ya que al iniciar sesión el servidor genera un JWT que se guarda en las cookies del cliente de modo que el servidor siempre sabe quien es al hacer una petición de ahí en adelante. Por esto, se confirma el token enviado al correo y se asegura que se está lidiando con el mismo usuario</p>	`
 	};
 	const mailSent = transporter.sendMail(mailOptions);
 	return mailSent;
@@ -28,6 +25,5 @@ const mail = async (id, email, token) => {
 
 module.exports = {
 	generateJWTToken,
-	validateToken,
 	mail
-}
+};
