@@ -7,7 +7,7 @@ const transporter = nodemailer.createTransport({
 	host: "mail.cock.li",
 	port: 587,
 	auth: {
-		user: "gabrieljim@firemail.cc",
+		user: "gab7@airmail.cc",
 		pass: "123123123"
 	}
 })

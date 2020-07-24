@@ -10,7 +10,7 @@ const generateJWTToken = async (data, options = {}) => {
 const mail = async (email, token) => {
 	const transporter = require("../config/transporter");
 	const mailOptions = {
-		from: "Gabriel <gabrieljim@firemail.cc>",
+		from: "Gabriel <gab7@airmail.cc>",
 		to: email,
 		subject: "Confirme su compra",
 		html: `<p>Su token para comprar es: <b>${token}</b></p>

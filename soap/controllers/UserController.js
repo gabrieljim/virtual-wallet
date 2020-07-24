@@ -167,11 +167,18 @@ const pay = async args => {
 
 	user.tempToken = randomToken;
 	await user.save();
-	await utils.mail(data.email, randomToken);
+	try {
+		await utils.mail(data.email, randomToken);
 
-	return {
-		data: JSON.stringify({ code: 1 })
-	};
+		return {
+			data: JSON.stringify({ code: 1 })
+		};
+	} catch(e) {
+		console.log(e);
+		return {
+			data: JSON.stringify({ code: 5, error: "Mail quota reached" })
+		};
+	}
 };
 
 const confirmPay = async args => {

@@ -1,0 +1,621 @@
+{
+	"info": {
+		"_postman_id": "caeb325a-6121-460b-be6f-178da606457a",
+		"name": "Wallet API",
+		"description": "Puente del cliente al servidor SOAP\n\nTodos los datos usados en esta documentación son de prueba\n\n# Autenticación\nExcepto por `register` y `login`, todas las requests requieren un token en las cookies del cliente, este se añade al iniciar sesión y devuelve un error si no está presente\n",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "http://localhost:8000/api/register",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"document\": \"27449507\",\n    \"firstName\": \"Gabriel\",\n    \"lastName\": \"Jimenez\",\n    \"email\": \"xy@gmail.com\",\n    \"phone\": \"8889999\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"login"
+					]
+				},
+				"description": "Registra un nuevo usuario en la base de datos"
+			},
+			"response": [
+				{
+					"name": "http://localhost:8000/api/register",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"document\": \"2744957\",\n    \"firstName\": \"Gabriel\",\n    \"lastName\": \"Jimenez\",\n    \"email\": \"xy@gmail.com\",\n    \"phone\": \"8889999\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/api/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"register"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "368"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"170-+QRoGDz0OMHTAqEIt3QZLXCshGs\""
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 24 Jul 2020 15:53:53 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"user\": {\n        \"id\": \"5f1b04118cf28c38c7266e13\",\n        \"document\": \"2744957\",\n        \"email\": \"xy@gmail.com\",\n        \"phone\": \"8889999\"\n    },\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmMWIwNDExOGNmMjhjMzhjNzI2NmUxMyIsImRvY3VtZW50IjoiMjc0NDk1NyIsImVtYWlsIjoieHlAZ21haWwuY29tIiwicGhvbmUiOiI4ODg5OTk5IiwiaWF0IjoxNTk1NjA2MDMzLCJleHAiOjE1OTU2MDk2MzN9.ryPDBfpeCR5OmoDDFAeym4kE47t61CfphiYRAIi1xy0\"\n}"
+				}
+			]
+		},
+		{
+			"name": "http://localhost:8000/api/login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"xyz@gmail.com\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"login"
+					]
+				},
+				"description": "Iniciar sesión y recibir el JWT"
+			},
+			"response": [
+				{
+					"name": "http://localhost:8000/api/login",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"xyz@gmail.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/api/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"login"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "373"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"175-ZZks2ZXdhKF4BSdvewxuyZyzJUU\""
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 24 Jul 2020 16:00:05 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"user\": {\n        \"id\": \"5f1b03868cf28c38c7266e11\",\n        \"document\": \"27449507\",\n        \"email\": \"xyz@gmail.com\",\n        \"phone\": \"8889999\"\n    },\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmMWIwMzg2OGNmMjhjMzhjNzI2NmUxMSIsImRvY3VtZW50IjoiMjc0NDk1MDciLCJlbWFpbCI6Inh5ekBnbWFpbC5jb20iLCJwaG9uZSI6Ijg4ODk5OTkiLCJpYXQiOjE1OTU2MDY0MDUsImV4cCI6MTU5NTYxMDAwNX0.w1x-OCQHnl0HiWAoOP6BC-YYu-tMsVqKk9o6TrWcNkg\"\n}"
+				}
+			]
+		},
+		{
+			"name": "http://localhost:8000/api/get-status",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Cookie",
+						"value": "token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmMWFmZDNlOGNmMjhjMzhjNzI2NmUxMCIsImRvY3VtZW50IjoiVi0xMmVsa2psa2RqIiwiZW1haWwiOiJnYWJyaWVsamltNjQxQGdtYWlsLmNvbSIsInBob25lIjoiMDQyNDE4MzI2MDIiLCJpYXQiOjE1OTU2MDQyODYsImV4cCI6MTU5NTYwNzg4Nn0.IjFOXojJidDM_jxp27AQ7wDo7ESuuwqQU2a1mU1lprA",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"user\": {\n        \"document\": \"27449507\",\n        \"phone\": \"8889999\"\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/get-status",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"get-status"
+					]
+				},
+				"description": "Devuelve el balance actual del usuario con sesión iniciada"
+			},
+			"response": [
+				{
+					"name": "http://localhost:8000/api/get-status",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmMWFmZDNlOGNmMjhjMzhjNzI2NmUxMCIsImRvY3VtZW50IjoiVi0xMmVsa2psa2RqIiwiZW1haWwiOiJnYWJyaWVsamltNjQxQGdtYWlsLmNvbSIsInBob25lIjoiMDQyNDE4MzI2MDIiLCJpYXQiOjE1OTU2MDQyODYsImV4cCI6MTU5NTYwNzg4Nn0.IjFOXojJidDM_jxp27AQ7wDo7ESuuwqQU2a1mU1lprA",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"user\": {\n        \"document\": \"27449507\",\n        \"phone\": \"8889999\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/api/get-status",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"get-status"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "12"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"c-AoJsuuBeExKpuf0uWMoqB+SIx2s\""
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 24 Jul 2020 16:06:46 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": 0\n}"
+				}
+			]
+		},
+		{
+			"name": "http://localhost:8000/api/add-funds",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Cookie",
+						"value": "token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmMWFmZDNlOGNmMjhjMzhjNzI2NmUxMCIsImRvY3VtZW50IjoiVi0xMmVsa2psa2RqIiwiZW1haWwiOiJnYWJyaWVsamltNjQxQGdtYWlsLmNvbSIsInBob25lIjoiMDQyNDE4MzI2MDIiLCJpYXQiOjE1OTU2MDQyODYsImV4cCI6MTU5NTYwNzg4Nn0.IjFOXojJidDM_jxp27AQ7wDo7ESuuwqQU2a1mU1lprA",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"user\": {\n        \"document\": \"27449507\",\n        \"phone\": \"8889999\",\n        \"value\": \"10\"\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/add-funds",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"add-funds"
+					]
+				},
+				"description": "Carga fondos a la billetera de un usuario"
+			},
+			"response": [
+				{
+					"name": "http://localhost:8000/api/add-funds",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmMWFmZDNlOGNmMjhjMzhjNzI2NmUxMCIsImRvY3VtZW50IjoiVi0xMmVsa2psa2RqIiwiZW1haWwiOiJnYWJyaWVsamltNjQxQGdtYWlsLmNvbSIsInBob25lIjoiMDQyNDE4MzI2MDIiLCJpYXQiOjE1OTU2MDQyODYsImV4cCI6MTU5NTYwNzg4Nn0.IjFOXojJidDM_jxp27AQ7wDo7ESuuwqQU2a1mU1lprA",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"user\": {\n        \"document\": \"27449507\",\n        \"phone\": \"8889999\",\n        \"value\": \"10\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/api/add-funds",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"add-funds"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "28"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"1c-uSkWsNXp7FNGyKB1JJMxPP/qPIM\""
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 24 Jul 2020 16:15:36 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"msg\": \"¡Fondos cargados!\"\n}"
+				}
+			]
+		},
+		{
+			"name": "http://localhost:8000/api/pay",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Cookie",
+						"type": "text",
+						"value": "token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmMWIwMzg2OGNmMjhjMzhjNzI2NmUxMSIsImRvY3VtZW50IjoiMjc0NDk1MDciLCJlbWFpbCI6Inh5ekBnbWFpbC5jb20iLCJwaG9uZSI6Ijg4ODk5OTkiLCJpYXQiOjE1OTU2MDc5NDIsImV4cCI6MTU5NTYxMTU0Mn0.jRkMz8m_ywuHPYfu9Wsy9omChLOjGAvcGJu6vxZlcdY"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"user\": {\n        \"value\": \"10\",\n        \"email\": \"xyz@gmail.com\"\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/pay",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"pay"
+					]
+				},
+				"description": "Envia solicitud para pago y recibe token al correo"
+			},
+			"response": [
+				{
+					"name": "http://localhost:8000/api/pay",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Cookie",
+								"type": "text",
+								"value": "token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmMWIwMzg2OGNmMjhjMzhjNzI2NmUxMSIsImRvY3VtZW50IjoiMjc0NDk1MDciLCJlbWFpbCI6Inh5ekBnbWFpbC5jb20iLCJwaG9uZSI6Ijg4ODk5OTkiLCJpYXQiOjE1OTU2MDc5NDIsImV4cCI6MTU5NTYxMTU0Mn0.jRkMz8m_ywuHPYfu9Wsy9omChLOjGAvcGJu6vxZlcdY"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"user\": {\n        \"value\": \"10\",\n        \"email\": \"xyz@gmail.com\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/api/pay",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"pay"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "17"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"11-YAs8v3keHejnfo3kqAE+ity2iCw\""
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 24 Jul 2020 16:28:16 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"msg\": \"success\"\n}"
+				}
+			]
+		},
+		{
+			"name": "http://localhost:8000/api/confirm-pay",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Cookie",
+						"type": "text",
+						"value": "token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmMWIwMzg2OGNmMjhjMzhjNzI2NmUxMSIsImRvY3VtZW50IjoiMjc0NDk1MDciLCJlbWFpbCI6Inh5ekBnbWFpbC5jb20iLCJwaG9uZSI6Ijg4ODk5OTkiLCJpYXQiOjE1OTU2MDc5NDIsImV4cCI6MTU5NTYxMTU0Mn0.jRkMz8m_ywuHPYfu9Wsy9omChLOjGAvcGJu6vxZlcdY"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"user\": {\n        \"value\": \"10\",\n        \"email\": \"xyz@gmail.com\",\n        \"token\": \"5XK9wW\"\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/confirm-pay",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"confirm-pay"
+					]
+				},
+				"description": "Confirma el pago con el token del correo y resta el saldo"
+			},
+			"response": [
+				{
+					"name": "http://localhost:8000/api/confirm-pay",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Cookie",
+								"type": "text",
+								"value": "token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmMWIwMzg2OGNmMjhjMzhjNzI2NmUxMSIsImRvY3VtZW50IjoiMjc0NDk1MDciLCJlbWFpbCI6Inh5ekBnbWFpbC5jb20iLCJwaG9uZSI6Ijg4ODk5OTkiLCJpYXQiOjE1OTU2MDc5NDIsImV4cCI6MTU5NTYxMTU0Mn0.jRkMz8m_ywuHPYfu9Wsy9omChLOjGAvcGJu6vxZlcdY"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"user\": {\n        \"value\": \"10\",\n        \"email\": \"xyz@gmail.com\",\n        \"token\": \"5XK9wW\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/api/confirm-pay",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"confirm-pay"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "17"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"11-YAs8v3keHejnfo3kqAE+ity2iCw\""
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 24 Jul 2020 16:31:26 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"msg\": \"success\"\n}"
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "a74d1e9e-6b3c-4f28-97d1-324f31dec399",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "8cb57b6c-e388-4524-9d6f-192f47dda583",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
