@@ -1,5 +1,7 @@
 # Billetera virtual
 
+**De ser posible utilizar un correo gmail en el registro, al parecer hotmail bloquea los correos enviados por nodemailer**
+
 ## ¿Cómo usar?
 
 Primero, clonar el repositorio y correr `npm install` en la raíz, luego...
